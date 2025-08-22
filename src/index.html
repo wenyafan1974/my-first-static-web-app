@@ -4,14 +4,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla $$$$ JavaScript &&&& App</title>
+  
+  <!-- Performance optimizations -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Vanilla JavaScript App - Optimized for Performance">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Vanilla App">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style">
+  
+  <!-- DNS prefetch for external resources (if any) -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  
+  <!-- Critical CSS inline for above-the-fold content -->
+  <style>
+    * { font-family: Arial, Helvetica, sans-serif; }
+    html, body { margin: 0; border: 0; padding: 0; background-color: #fff; }
+    main { margin: auto; width: 50%; padding: 20px; }
+    main > h1 { text-align: center; font-size: 3.5em; }
+  </style>
+  
+  <!-- Non-critical CSS loaded asynchronously -->
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  
+  <!-- Performance monitoring script -->
+  <script src="performance.js" defer></script>
+  
+  <title>Vanilla JavaScript App - Optimized</title>
 </head>
 
 <body>
   <main>
     <h1>Vanilla JavaScript App</h1>
+    <p>Performance optimized version</p>
   </main>
+  
+  <!-- Defer non-critical JavaScript -->
+  <script>
+    // Performance monitoring
+    window.addEventListener('load', function() {
+      if ('performance' in window) {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+      }
+    });
+    
+    // Register Service Worker for caching and offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('Service Worker registered successfully:', registration.scope);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+    
+    // Preload critical resources
+    function preloadResource(href, as) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = href;
+      link.as = as;
+      document.head.appendChild(link);
+    }
+    
+    // Preload critical resources
+    preloadResource('/styles.css', 'style');
+  </script>
 </body>
 
 </html>
