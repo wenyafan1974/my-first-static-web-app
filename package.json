@@ -2,6 +2,22 @@
   "name": "vanilla-basic",
   "version": "1.0.0",
   "scripts": { 
-    "start": "sirv ./src public --cors --single --no-clear --port 8000"
+    "start": "sirv ./src public --cors --single --no-clear --port 8000",
+    "build": "npm run build:html && npm run build:css && npm run build:assets",
+    "build:html": "node build/html-minifier.js",
+    "build:css": "node build/css-minifier.js", 
+    "build:assets": "node build/asset-optimizer.js",
+    "serve:prod": "sirv ./dist --cors --single --no-clear --port 8000",
+    "analyze": "node build/bundle-analyzer.js",
+    "lighthouse": "lighthouse http://localhost:8000 --output=json --output-path=./lighthouse-report.json"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.22.2",
+    "html-minifier-terser": "^7.2.0",
+    "clean-css": "^5.3.2",
+    "lighthouse": "^11.0.0"
+  },
+  "dependencies": {
+    "sirv": "^3.0.1"
   }
 }
