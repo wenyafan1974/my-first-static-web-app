@@ -4,14 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla $$$$ JavaScript &&&& App</title>
+  
+  <!-- Performance optimizations -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  
+  <!-- DNS prefetch for external resources (add as needed) -->
+  <!-- <link rel="dns-prefetch" href="//fonts.googleapis.com"> -->
+  
+  <!-- Optimized title -->
+  <title>Vanilla JavaScript App</title>
+  
+  <!-- Meta description for SEO and social sharing -->
+  <meta name="description" content="A high-performance vanilla JavaScript application">
+  
+  <!-- Favicon (prevents 404 requests) -->
+  <link rel="icon" href="data:,">
 </head>
 
 <body>
   <main>
     <h1>Vanilla JavaScript App</h1>
   </main>
+  
+  <!-- Load performance monitoring (lightweight and non-blocking) -->
+  <script src="performance.js" defer></script>
+  
+  <!-- Load non-critical JavaScript at the end -->
+  <!-- <script src="app.js" defer></script> -->
 </body>
 
 </html>
